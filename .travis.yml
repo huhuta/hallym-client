@@ -1,0 +1,44 @@
+sudo: required
+services:
+  - docker
+language: node_js
+node_js:
+  - 8.9.11
+
+#branches:
+  #only:
+    #- develop
+    #- master
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install
+  - npm run build
+
+script:
+# prepare qemu
+- docker run --rm --privileged multiarch/qemu-user-static:register --reset
+# build image
+- docker build -t $OWNER/$REPO:amd64 ./
+- docker build -f Dockerfile.arm32v7 -t $OWNER/$REPO:arm32v7 ./
+# push image
+- >
+  docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+  docker tag $OWNER/$REPO $OWNER/$REPO:$TAG
+  docker push $OWNER/$REPO:$TAG
+  docker push $OWNER/$REPO
+
+
+env:
+  global:
+    - OWNER=${TRAVIS_REPO_SLUG:0:6}
+    - REPO=${TRAVIS_REPO_SLUG:7}
+
+#notifications:
+  #slack:
+    #template:
+      #- "*%{result} %{branch} %{repository_slug}* | <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit_subject}>)"
+    #rooms:

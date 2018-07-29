@@ -1,0 +1,36 @@
+{
+  "name": "model-serving",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@rematch/core": "^1.0.0-beta.4",
+    "bootstrap": "^4.1.2",
+    "dotenv": "^6.0.0",
+    "filepond-plugin-image-preview": "^1.0.5",
+    "filepond-plugin-image-resize": "^1.1.0",
+    "filepond-plugin-image-transform": "^1.1.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-filepond": "^1.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "reactstrap": "^6.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && docker build -t hallym-client .",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "prettier": "^1.12.0"
+  }
+}
