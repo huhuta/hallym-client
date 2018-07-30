@@ -1,44 +1,12 @@
-sudo: required
-services:
-  - docker
+sudo: enabled
 language: node_js
 node_js:
-  - 8.9.11
-
-#branches:
-  #only:
-    #- develop
-    #- master
-
-cache:
-  directories:
-    - node_modules
-
+  - 8.11.3
 install:
   - npm install
   - npm run build
-
 script:
-# prepare qemu
-- docker run --rm --privileged multiarch/qemu-user-static:register --reset
-# build image
-- docker build -t $OWNER/$REPO:amd64 ./
-- docker build -f Dockerfile.arm32v7 -t $OWNER/$REPO:arm32v7 ./
-# push image
-- >
-  docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-  docker tag $OWNER/$REPO $OWNER/$REPO:$TAG
-  docker push $OWNER/$REPO:$TAG
-  docker push $OWNER/$REPO
-
-
+  - curl -s https://gist.githubusercontent.com/huhuta/acd5ed0dc04c9b29db797284e3cdda05/raw/8fecc361908f6930ab593f53c8c2f514078e08d5/travis-ci-docker-multiarch-push.sh | /bin/bash -s
 env:
-  global:
-    - OWNER=${TRAVIS_REPO_SLUG:0:6}
-    - REPO=${TRAVIS_REPO_SLUG:7}
+  - OWNER=${TRAVIS_REPO_SLUG:0:6} REPO=${TRAVIS_REPO_SLUG:7}
 
-#notifications:
-  #slack:
-    #template:
-      #- "*%{result} %{branch} %{repository_slug}* | <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit_subject}>)"
-    #rooms:
