@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-const { REACT_APP_BACKEND_HOST, REACT_APP_BACKEND_PORT } = process.env;
-const backEnd = `http://${REACT_APP_BACKEND_HOST}:${REACT_APP_BACKEND_PORT}`;
+const { REACT_APP_BACKEND_HOST } = process.env;
+const backEnd = `http://${REACT_APP_BACKEND_HOST}`;
 
 export const inference = {
   state: {

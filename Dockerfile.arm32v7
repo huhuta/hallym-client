@@ -1,3 +1,0 @@
-FROM arm32v7:nginx
-COPY ./qemu-arm-static /usr/bin/
-COPY ./build /usr/share/nginx/html
