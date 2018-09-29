@@ -4,7 +4,7 @@ const backEnd = `http://${REACT_APP_BACKEND_HOST}`;
 
 export const inference = {
   state: {
-    '5class': { result: {} },
+    fiveclass: { result: {} },
     cancer: { result: {} },
     neoplasm: { result: {} },
   },

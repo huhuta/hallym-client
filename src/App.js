@@ -4,7 +4,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import InferenceServiceContainer from './pages/InferenceService/InferenceServiceContainer';
 import Header from './pages/Header';
 
-export const models = ['5class', 'neoplasm', 'cancer'];
+export const models = ['fiveclass', 'neoplasm', 'cancer'];
 
 class App extends Component {
   render() {
